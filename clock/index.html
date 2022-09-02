@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0d1320;
+    }
+    #date{
+      margin-top: 80px;
+      text-align: center;
+      font-size: 20vh;
+      line-height: 20vh;
+      font-weight: bold;
+      color: #e2ecfd;
+    }
+    #timer {
+      text-align: center;
+      font-size: 56vh;
+      line-height: 56vh;
+      font-weight: bold;
+      color: #e2ecfd;
+    }
+  </style>
+</head>
+<body>
+  <div id="date"></div>
+  <div id="timer"></div>
+</body>
+</html>
+<script>
+  var isMinutes = true
+  function clock() {
+    var now = new Date()
+    var year = now.getFullYear()
+    var month = (now.getMonth() + 1) >= 10 ? (now.getMonth() + 1) : '0' + (now.getMonth() + 1)
+    var day = now.getDate() >= 10 ? now.getDate() : '0' + now.getDate()
+    var week = now.getDay()
+    var weekarr = ['周日','周一','周二','周三','周四','周五','周六']
+    var hours = now.getHours() >= 10 ? now.getHours() : '0' + now.getHours()
+    var minutes = now.getMinutes() >= 10 ? now.getMinutes() : '0' + now.getMinutes()
+    var second = now.getSeconds()
+    console.log(hours, minutes, second)
+    var date = year + '-' + month + '-' + day + ' ' + weekarr[week]
+    document.getElementById('date').innerHTML = date
+    document.getElementById('timer').innerHTML = hours + `<span style="color:${ isMinutes ? '#e2ecfd' : '#0d1320'}">:</span>` + minutes
+    isMinutes = !isMinutes
+  }
+
+  clock()
+  setInterval(clock, 1000)
+</script>
